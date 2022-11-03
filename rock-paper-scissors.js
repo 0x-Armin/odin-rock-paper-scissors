@@ -63,21 +63,4 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
   let playerScore = 0;
-
-  for (let i=0; i<5; i++) {
-    const playerSelection = prompt("Pick rock, paper or scissors!", "rock");
-    const computerSelection = getComputerChoice();
-    console.log(`You pick ${playerSelection} and the computer picked ${computerSelection}`);
-    
-    let outcome = playRound(playerSelection, computerSelection);
-    if (outcome) {
-      playerScore += 1;
-    }
-  }
-
-  if (playerScore >= 3) {
-    console.log(`You are the winner! You've won ${playerScore} out of 5 rounds.`)
-  } else {
-    console.log(`You are the loser! You've not won ${5-playerScore} out of 5 rounds.`)
-  }
 }
