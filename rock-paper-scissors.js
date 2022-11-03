@@ -61,6 +61,15 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function game() {
-  let playerScore = 0;
+function startRound(e) {
+  const playerSelection = this.className;
+  const computerSelection = getComputerChoice();
+
+  playRound(playerSelection, computerSelection);
 }
+
+// logic of gameplay here
+let playerScore = 0, computerScore = 0;
+
+const btns = Array.from(document.querySelectorAll('button'));
+btns.forEach(btn => btn.addEventListener('click', startRound));
