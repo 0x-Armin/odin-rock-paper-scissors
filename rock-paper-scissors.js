@@ -15,61 +15,52 @@ function getLossMessage(playerSelection, computerSelection) {
   return `You lose! ${playerSelection} loses to ${computerSelection}.`
 }
 
-function playRound(playerSelection, computerSelection) {
+function getOutcome(playerSelection, computerSelection) {
   playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
 
   switch(playerSelection) {
     case 'Rock':
       switch(computerSelection) {
         case 'Rock':
-          console.log(getTieMessage(playerSelection, computerSelection));
-          return 0;
+          return getTieMessage(playerSelection, computerSelection);
         case 'Paper':
-          console.log(getLossMessage(playerSelection, computerSelection));
-          return 0;
+          return getLossMessage(playerSelection, computerSelection);
         default:
-          console.log(getWinMesssage(playerSelection, computerSelection));
-          return 1;
+          return getWinMesssage(playerSelection, computerSelection);
       }
     case 'Paper':
       switch(computerSelection) {
         case 'Rock':
-          console.log(getWinMesssage(playerSelection, computerSelection));
-          return 1;
+          return getWinMesssage(playerSelection, computerSelection);
         case 'Paper':
-          console.log(getTieMessage(playerSelection, computerSelection));
-          return 0;
+          return getTieMessage(playerSelection, computerSelection);
         default:
-          console.log(getLossMessage(playerSelection, computerSelection));
-          return 0;
+          return getLossMessage(playerSelection, computerSelection);
       }
     case 'Scissors':
       switch(computerSelection) {
         case 'Rock':
-          console.log(getLossMessage(playerSelection, computerSelection));
-          return 0;
+          return getLossMessage(playerSelection, computerSelection);
         case 'Paper':
-          console.log(getWinMesssage(playerSelection, computerSelection));
-          return 1;
+          return getWinMesssage(playerSelection, computerSelection);
         default:
-          console.log(getTieMessage(playerSelection, computerSelection));
-          return 0;
+          return getTieMessage(playerSelection, computerSelection);
       }
     default:
-      console.log("Invalid input! Please enter rock, paper or scissors.");
-      return 0;
+      return "Invalid input! Please enter rock, paper or scissors.";
   }
 }
 
-function startRound(e) {
+function playRound(e) {
   const playerSelection = this.className;
   const computerSelection = getComputerChoice();
 
-  playRound(playerSelection, computerSelection);
+  const outcome = getOutcome(playerSelection, computerSelection);
+  document.getElementById('result').textContent = outcome;
 }
 
 // logic of gameplay here
 let playerScore = 0, computerScore = 0;
 
 const btns = Array.from(document.querySelectorAll('button'));
-btns.forEach(btn => btn.addEventListener('click', startRound));
+btns.forEach(btn => btn.addEventListener('click', playRound));
